@@ -95,7 +95,7 @@ function loadTriangles() {
                 addVertex = inputTriangles[whichSet].vertices[whichSetVert];
                 addColor = inputTriangles[whichSet].materials.diffuse;
                 coordArray.push(addVertex[0], addVertex[1], addVertex[2]);
-                coordArray.push(addColor[0], addColor[1], addColor[2]);
+                shadeArray.push(addColor[0], addColor[1], addColor[2]);
             }
             vbufferSize += inputTriangles[whichSet].vertices.length;
             
