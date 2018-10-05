@@ -77,13 +77,13 @@ function loadTriangles() {
         var whichSetVert; // index of vertex in current triangle set
         var whichSetTri; // index of triangle in current triangle set
         var coordArray = []; // 1D array of vertex coords for WebGL
-        var offset = vec3.create(); // index offset
-        var addTriangleIndex = vec3.create(); //triangle index added to indexArray
         var indexArray = []; //1D array of vertex indexs for WebGL
         var shadeArray = []; //1D array of vertex shades for WebGL
         var vbufferSize = 0; // keeps track of number of vertices
         var addVertex = []; // vertex position later added to coordArray
         var addColor = []; //color to add in vertex position
+        var offset = vec3.create(); // index offset
+        var addTriangleIndex = vec3.create(); //triangle index added to indexArray
         
         for (var whichSet=0; whichSet<inputTriangles.length; whichSet++) {
             
@@ -93,7 +93,7 @@ function loadTriangles() {
                 //coordArray = coordArray.concat(inputTriangles[whichSet].vertices[whichSetVert]);
                 // console.log(inputTriangles[whichSet].vertices[whichSetVert]);
                 addVertex = inputTriangles[whichSet].vertices[whichSetVert];
-                addColor = inputTriangles[whichSet].materials.diffuse;
+                addColor = inputTriangles[whichSet].material.diffuse;
                 coordArray.push(addVertex[0], addVertex[1], addVertex[2]);
                 shadeArray.push(addColor[0], addColor[1], addColor[2]);
             }
