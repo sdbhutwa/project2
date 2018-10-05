@@ -97,7 +97,7 @@ function loadTriangles() {
                 coordArray.push(addVertex[0], addVertex[1], addVertex[2]);
                 shadeArray.push(addColor[0], addColor[1], addColor[2]);
             }
-            vbufferSize += inputTriangles[whichSet].vertices.length;
+            
             
             // set up the vertex coord array
             for (whichSetTri=0; whichSetTri<inputTriangles[whichSet].vertices.length; whichSetTri++){
@@ -106,6 +106,7 @@ function loadTriangles() {
                 vec3.add(addTriangleIndex,offset,inputTriangles[whichSet].triangles[whichSetTri]);
                 indexArray.push(addTriangleIndex[0],addTriangleIndex[1],addTriangleIndex[2]);
             }
+            vbufferSize += inputTriangles[whichSet].vertices.length;
             triBufferSize += inputTriangles[whichSet].triangles.length;
             
         } // end for each triangle set 
