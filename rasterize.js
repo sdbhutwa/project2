@@ -138,8 +138,8 @@ function loadTriangles() {
 function setupShaders() {
     
     // define fragment shader in essl using es6 template strings
-    var fShaderCode =
-        varying lowp vec3 fragShade;`
+    var fShaderCode = `
+        varying lowp vec3 fragShade;
         void main(void) {
             gl_FragColor = vec4(fragShade, 1.0); // all fragments are white
         }
