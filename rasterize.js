@@ -211,7 +211,7 @@ function renderTriangles() {
     gl.vertexAttribPointer(vertexShadeAttrib,3,gl.FLOAT,false,0,0); // feed
     
     // vertex buffer: activate and feed into vertex shader
-    gl.bindBuffer(gl.ELEMENTARY_ARRAY_BUFFER,triangleBuffer); // activate
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,triangleBuffer); // activate
     gl.drawElements(gl.TRIANGLES,triBufferSize,gl.UNSIGNED_SHORT,0); // render
 
     //gl.drawArrays(gl.TRIANGLES,0,3); // render
