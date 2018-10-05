@@ -12,11 +12,10 @@ var Eye = new vec4.fromValues(0.5,0.5,-0.5,1.0); // default eye position in worl
 var gl = null; // the all powerful gl object. It's all here folks!
 var vertexBuffer; // this contains vertex coordinates in triples
 var triangleBuffer; // this contains indices into vertexBuffer in triples
-var triBufferSize; // the number of indices in the triangle buffer
+var triBufferSize = 0; // the number of indices in the triangle buffer
 var vertexPositionAttrib; // where to put position for vertex shader
 var shadeBuffer;
 var vertexShadeAttrib;
-var triangleBufferSize;
 
 
 // ASSIGNMENT HELPER FUNCTIONS
@@ -83,7 +82,6 @@ function loadTriangles() {
         var indexArray = []; //1D array of vertex indexs for WebGL
         var shadeArray = []; //1D array of vertex shades for WebGL
         var vbufferSize = 0; // keeps track of number of vertices
-        var tbufferSize = 0; // keeps track of number of triangle vts
         var addVertex = []; // vertex position later added to coordArray
         var addColor = []; //color to add in vertex position
         
@@ -108,12 +106,12 @@ function loadTriangles() {
                 vec.add(addTriangleIndex,offset,inputTriangles[whichSet].triangles[whichSetTri]);
                 indexArray.push(addTriangleIndex[0],addTriangleIndex[1],addTriangleIndex[2]);
             }
-            tbufferSize += inputTriangles[whichSet].triangles.length;
+            triBufferSize += inputTriangles[whichSet].triangles.length;
             
         } // end for each triangle set 
         
         //for total
-        tBufferSize *= 3;
+        triBufferSize *= 3;
         
         
         // console.log(coordArray.length);
@@ -213,7 +211,7 @@ function renderTriangles() {
     
     // vertex buffer: activate and feed into vertex shader
     gl.bindBuffer(gl.ELEMENTARY_ARRAY_BUFFER,triangleBuffer); // activate
-    gl.drawElements(gl.TRIANGLES,tbufferSize,gl.UNSIGNED_SHORT,0); // render
+    gl.drawElements(gl.TRIANGLES,triBufferSize,gl.UNSIGNED_SHORT,0); // render
 
     //gl.drawArrays(gl.TRIANGLES,0,3); // render
 } // end render triangles
