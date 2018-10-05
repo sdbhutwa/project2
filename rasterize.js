@@ -103,7 +103,7 @@ function loadTriangles() {
             for (whichSetTri=0; whichSetTri<inputTriangles[whichSet].vertices.length; whichSetTri++){
                 //coordArray = coordArray.concat(inputTriangles[whichSet].vertices[whichSetVert]);
                 // console.log(inputTriangles[whichSet].vertices[whichSetVert]);
-                vec.add(addTriangleIndex,offset,inputTriangles[whichSet].triangles[whichSetTri]);
+                vec3.add(addTriangleIndex,offset,inputTriangles[whichSet].triangles[whichSetTri]);
                 indexArray.push(addTriangleIndex[0],addTriangleIndex[1],addTriangleIndex[2]);
             }
             triBufferSize += inputTriangles[whichSet].triangles.length;
@@ -138,9 +138,9 @@ function setupShaders() {
     
     // define fragment shader in essl using es6 template strings
     var fShaderCode =
-        varying lowp vec3 shade;`
+        varying lowp vec3 fragShade;`
         void main(void) {
-            gl_FragColor = vec4(shade, 1.0); // all fragments are white
+            gl_FragColor = vec4(fragShade, 1.0); // all fragments are white
         }
     `;
     
@@ -148,7 +148,7 @@ function setupShaders() {
     var vShaderCode = `
         attribute vec3 vertexPosition;
         attribute vec3 vertexShade;
-        varying lowp vec3 shade;
+        varying lowp vec3 fragShade;
         void main(void) {
             gl_Position = vec4(vertexPosition, 1.0); // use the untransformed position
             shade = vertexShade;
