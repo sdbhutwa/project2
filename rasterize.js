@@ -82,12 +82,12 @@ function loadTriangles() {
         var vbufferSize = 0; // keeps track of number of vertices
         var addVertex = []; // vertex position later added to coordArray
         var addColor = []; //color to add in vertex position
-        var offset = vec3.create(); // index offset
+        var idxOffset = vec3.create(); // index offset
         var addTriangleIndex = vec3.create(); //triangle index added to indexArray
         
         for (var whichSet=0; whichSet<inputTriangles.length; whichSet++) {
             
-            vec3.set(offset, vbufferSize, vbufferSize, vbufferSize, vbufferSize);
+            vec3.set(idxOffset, vbufferSize, vbufferSize, vbufferSize, vbufferSize);
             // set up the vertex coord array
             for (whichSetVert=0; whichSetVert<inputTriangles[whichSet].vertices.length; whichSetVert++){
                 //coordArray = coordArray.concat(inputTriangles[whichSet].vertices[whichSetVert]);
@@ -100,10 +100,10 @@ function loadTriangles() {
             
             
             // set up the vertex coord array
-            for (whichSetTri=0; whichSetTri<inputTriangles[whichSet].vertices.length; whichSetTri++){
+            for (whichSetTri=0; whichSetTri<inputTriangles[whichSet].triangles.length; whichSetTri++){
                 //coordArray = coordArray.concat(inputTriangles[whichSet].vertices[whichSetVert]);
                 // console.log(inputTriangles[whichSet].vertices[whichSetVert]);
-                vec3.add(addTriangleIndex,offset,inputTriangles[whichSet].triangles[whichSetTri]);
+                vec3.add(addTriangleIndex,idxOffset,inputTriangles[whichSet].triangles[whichSetTri]);
                 indexArray.push(addTriangleIndex[0],addTriangleIndex[1],addTriangleIndex[2]);
             }
             vbufferSize += inputTriangles[whichSet].vertices.length;
